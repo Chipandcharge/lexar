@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 // import components
-import Loader from '../Loader/index.jsx'
+import Loader from '../Loader'
 
 const useStyles = makeStyles(theme => ({
     

@@ -1,0 +1,2 @@
+export const SET_USERSESSION = 'SET_USERSESSION';
+export const LOAD_USERDATA = 'LOAD_USERDATA';
