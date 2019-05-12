@@ -15,7 +15,7 @@ const GlobalState = props => {
     const appConfig = new AppConfig(['store_write', 'publish_data', 'email',]);
     const [userState, dispatch] = useReducer(userReducer, {userSession:  new UserSession({ appConfig }), userData: {}, userName: [], userAuth: false});
 
-    const newUserSession = () => {
+    const newUserSession = async () => {
         dispatch({type: SET_USERSESSION})
     }
 

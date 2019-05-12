@@ -4,12 +4,17 @@ import {SET_USERSESSION, LOAD_USERDATA } from './types'
 import { UserSession, AppConfig } from 'blockstack';
 
 //Initialize the UserSession State
-const makeUserSession = (state) => {
+const makeUserSession = async (state) => {
 
     const session = state.userSession
+    console.log(session)
     const auth = session.isUserSignedIn();
-    const data = session.loadUserData();
-    // console.log(data)
+    //const data = session.loadUserData();
+    console.log(auth)
+    if (!session.isUserSignedIn() && session.isSignInPending()) {
+        const data = await session.handlePendingSignIn()
+        console.log(data)
+    }
     switch (auth) {
         case true:
         const data = session.loadUserData();
