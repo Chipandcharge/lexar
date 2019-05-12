@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 
 // Context Import
@@ -14,7 +14,7 @@ const GlobalState = props => {
 
     const appConfig = new AppConfig(['store_write', 'publish_data', 'email',]);
     const [userState, dispatch] = useReducer(userReducer, {userSession:  new UserSession({ appConfig }), userData: {}, userName: [], userAuth: false});
-
+    
     const newUserSession = async () => {
         dispatch({type: SET_USERSESSION})
     }
@@ -38,3 +38,4 @@ const GlobalState = props => {
 }
 
 export default GlobalState
+

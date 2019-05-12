@@ -14,6 +14,7 @@ import ToolBar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button'
 import GroupIcon from '@material-ui/icons/Group';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import Grid from '@material-ui/core/Grid'
 
 // Context import
 import userContext from '../Context/userContext';
@@ -35,6 +36,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     flexGrow: 1,
+    justifyContent: "space-around",
+    variant: "dense"
   },
   grow: {
     flexGrow: 1,
@@ -44,7 +47,8 @@ const useStyles = makeStyles(theme => ({
   },
   rightIcon: {
     marginLeft: 10,
-  }
+  },
+
 }))
 
 const Navbar = props => {
@@ -52,65 +56,65 @@ const Navbar = props => {
 
   const classes = useStyles();
   const context = useContext(userContext)
-  const auth = true
-  let content = ""
-
 
   // Loader if Session not defined
-  if(context.userSession == {}) {
+  if(context.userSession == undefined) {
   content = (
-    <AppBar position="static" color="default" >
-      <ToolBar>
-        <Loader />
-      </ToolBar>
-    </AppBar>
+    <React.Fragment>
+      <AppBar position="static" color="default">
+        <ToolBar className={classes.root}>
+          <Loader />
+        </ToolBar>
+      </AppBar>
+    </React.Fragment>  
   ) 
   } else {
     switch (context.userAuth) {
       
       case true:
         return content = (
-          <div className={classes.root}>
-            <AppBar position="static" color="default">
-              <ToolBar>
-                <Button 
-                variant="contained" 
-                color="secondary" 
-                className={classes.button}
-                component={MyLink}
-                href={'/connect'}
-                hrefAs={'/connect'}
-                >
-                  Connect
-                  <PersonAddIcon className={classes.rightIcon} />
-                </Button>
+          <React.Fragment>
+              <AppBar position="static" color="default">
+                <ToolBar className={classes.root}>
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    className={classes.button}
+                    component={MyLink}
+                    href={'/connect'}
+                    hrefAs={'/connect'}
+                  >
+                      Connect
+                      <PersonAddIcon className={classes.rightIcon} />
+                  </Button>
 
-                <Button 
-                variant="contained" 
-                color="secondary" 
-                className={classes.button}
-                component={MyLink}
-                href={'/contacts'}
-                hrefAs={'/contacts'}
-                >
-                  Contacts
-                  <GroupIcon className={classes.rightIcon} />
-                </Button>
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    className={classes.button}
+                    component={MyLink}
+                    href={'/contacts'}
+                    hrefAs={'/contacts'}
+                  >
+                      Contacts
+                      <GroupIcon className={classes.rightIcon} />
+                  </Button>
 
-                <SignOut userSession={context.userSession} />
-                </ToolBar>
+                  <SignOut userSession={context.userSession} />
+              </ToolBar>
             </AppBar>
-          </div>
+          </React.Fragment>
         );
 
       case false:
         return content = (
-          <AppBar position="static" color="default" >
-            <ToolBar>
-              <SignIn userSession={context.userSession} />
-              <SignOut userSession={context.userSession} />
-            </ToolBar>
-          </AppBar>
+          <React.Fragment>
+            <AppBar position="static" color="default" >
+              <ToolBar className={classes.root}>
+                <SignIn userSession={context.userSession} />
+              </ToolBar>
+            </AppBar>
+          </React.Fragment>
         );
 
       default:

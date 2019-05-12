@@ -1,8 +1,9 @@
+import "../components/bootstrap"
+
 import React from 'react';
 import Head from '../components/Head'
 import Landing from '../components/Landing';
-import GlobalState from '../components/Global-State.js'
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 const DynamicComponentWithNoSSR = dynamic(
   () => import('../components/Global-State'),
@@ -13,7 +14,6 @@ const DynamicComponentWithNoSSR = dynamic(
 
 
 const Home = props => {
-
   let content = (
     <React.Fragment>
       <DynamicComponentWithNoSSR>
@@ -63,6 +63,9 @@ const Home = props => {
             padding: 12px 0 0;
             font-size: 13px;
             color: #333;
+          }
+          .body {
+            background-color: #f5f5f5
           }
         `}</style>
       </DynamicComponentWithNoSSR>
